@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Covert_GL", "Covert_GL\Covert_GL.vcxproj", "{AFD3242F-A411-46B0-8550-DF08EC876D85}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AFD3242F-A411-46B0-8550-DF08EC876D85}.Debug|x64.ActiveCfg = Debug|x64
+		{AFD3242F-A411-46B0-8550-DF08EC876D85}.Debug|x64.Build.0 = Debug|x64
+		{AFD3242F-A411-46B0-8550-DF08EC876D85}.Debug|x86.ActiveCfg = Debug|Win32
+		{AFD3242F-A411-46B0-8550-DF08EC876D85}.Debug|x86.Build.0 = Debug|Win32
+		{AFD3242F-A411-46B0-8550-DF08EC876D85}.Release|x64.ActiveCfg = Release|x64
+		{AFD3242F-A411-46B0-8550-DF08EC876D85}.Release|x64.Build.0 = Release|x64
+		{AFD3242F-A411-46B0-8550-DF08EC876D85}.Release|x86.ActiveCfg = Release|Win32
+		{AFD3242F-A411-46B0-8550-DF08EC876D85}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ED43548F-51C6-4FE5-9DCB-D643ABE04417}
+	EndGlobalSection
+EndGlobal
