@@ -56,8 +56,14 @@ void Logger::SetCurrentTime(DateFormat dateFormat, TimeFormat timeFormat)
 {
   time_t rawTime = time(NULL);
   
-  struct tm tm;
-  localtime_s(&tm, &rawTime);
+  struct tm * tm;
+#if defined(WIN32)
+  struct tm tmp;
+  tm = &tmp;
+  localtime_s(tm, &rawTime);
+#else
+  tm = localtime(&rawTime);
+#endif
   
   string currTime;
 
@@ -65,22 +71,22 @@ void Logger::SetCurrentTime(DateFormat dateFormat, TimeFormat timeFormat)
   {
   case DateFormat::MDY:
     //EX. 2-19-2019  
-    currTime += to_string(tm.tm_mon + 1) + "-";
-    currTime += to_string(tm.tm_mday) + "-";
-    currTime += to_string(tm.tm_year + 1900);
+    currTime += to_string(tm->tm_mon + 1) + "-";
+    currTime += to_string(tm->tm_mday) + "-";
+    currTime += to_string(tm->tm_year + 1900);
     break;
   case DateFormat::DMY:
     //EX 19-2-2019
-    currTime += to_string(tm.tm_mday) + "-";
-    currTime += to_string(tm.tm_mon + 1) + "-";
-    currTime += to_string(tm.tm_year + 1900);
+    currTime += to_string(tm->tm_mday) + "-";
+    currTime += to_string(tm->tm_mon + 1) + "-";
+    currTime += to_string(tm->tm_year + 1900);
 
     break;
   case DateFormat::YMD:
     //EX 2019-2-19
-    currTime += to_string(tm.tm_year + 1900);
-    currTime += to_string(tm.tm_mon + 1) + "-";
-    currTime += to_string(tm.tm_mday) + "-";
+    currTime += to_string(tm->tm_year + 1900);
+    currTime += to_string(tm->tm_mon + 1) + "-";
+    currTime += to_string(tm->tm_mday) + "-";
  
     break;
   }
@@ -88,23 +94,23 @@ void Logger::SetCurrentTime(DateFormat dateFormat, TimeFormat timeFormat)
   switch (timeFormat)
   {
   case TimeFormat::TWELVE:
-    if (tm.tm_hour >= 13 && tm.tm_hour < 24) //1-11pm
-      currTime += " " + to_string((tm.tm_hour - 12)) + "pm";
-    else if(tm.tm_hour == 12) // 12pm
-      currTime += " " + to_string((tm.tm_hour)) + "pm";
-    else if(tm.tm_hour == 24) // 12am
-      currTime += " " + to_string((tm.tm_hour)) + "am";
+    if (tm->tm_hour >= 13 && tm->tm_hour < 24) //1-11pm
+      currTime += " " + to_string((tm->tm_hour - 12)) + "pm";
+    else if(tm->tm_hour == 12) // 12pm
+      currTime += " " + to_string((tm->tm_hour)) + "pm";
+    else if(tm->tm_hour == 24) // 12am
+      currTime += " " + to_string((tm->tm_hour)) + "am";
     else // 1 - 11am
-      currTime += " " + to_string(tm.tm_hour) + "am";
+      currTime += " " + to_string(tm->tm_hour) + "am";
 
-    currTime += ":" + to_string(tm.tm_min);
-    currTime += ":" + to_string(tm.tm_sec);
+    currTime += ":" + to_string(tm->tm_min);
+    currTime += ":" + to_string(tm->tm_sec);
     break;
 
   case TimeFormat::TWENTYFOUR:
-    currTime += " " + to_string(tm.tm_hour);
-    currTime += ":" + to_string(tm.tm_min);
-    currTime += ":" + to_string(tm.tm_sec);
+    currTime += " " + to_string(tm->tm_hour);
+    currTime += ":" + to_string(tm->tm_min);
+    currTime += ":" + to_string(tm->tm_sec);
     break;
   }
 
